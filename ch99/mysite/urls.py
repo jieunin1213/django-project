@@ -18,12 +18,20 @@ from django.urls import path
 # 58p
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from bookmark.views import BookmarkLV, BookmarkDV
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # /admin/ 이 왔을때, admin.site.urls. 로 넘겨줘 ( 경로 지정 )
 
-    path('bookmark/', BookmarkLV.as_view(), name = 'index'), #url 경로지정
-    path('bookmark/<int:pk>/', BookmarkDV.as_view(), name='detail'),]
+    path('admin/', admin.site.urls),
+    path('bookmark/', include('bookmark.urls')),
+    path('blog/', include('blog.urls')),
+]
+
+
+
+#path('admin/', admin.site.urls),  # /admin/ 이 왔을때, admin.site.urls. 로 넘겨줘 ( 경로 지정 )
+
+   #path('bookmark/', BookmarkLV.as_view(), name = 'index'), #url 경로지정
+   # path('bookmark/<int:pk>/', BookmarkDV.as_view(), name='detail'),
