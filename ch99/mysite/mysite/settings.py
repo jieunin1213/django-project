@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$p%&re7&ksnkw)&*&g!71&isg*9o01dhn9_7twyg(7&n6z55+-'
+SECRET_KEY = 'k16+ymuq8udu(j$rm+4a&5baeu=b%fhws=v7u3mgp!nl5a3i#l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []#['127.0.0.1' 'localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bookmark.apps.BookmarkConfig',
-    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +54,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,8 +66,6 @@ TEMPLATES = [
         },
     },
 ]
-
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -107,24 +103,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'ko-kr'
+LANGUAGE_CODE = 'en-us'
 
-# TIME_ZONE = 'UTC'
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_L10N = True
 
-# USE_TZ = True
-USE_TZ = False
+USE_TZ = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

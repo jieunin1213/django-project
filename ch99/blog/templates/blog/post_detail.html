@@ -1,33 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h2>{{ object.title }}</h2>
+{% load static %}
 
+{% block title %} post_detail.html {% endblock %}
+
+{% block header %}
+  <header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Clean Blog</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+
+<h2> {{ object.title }} </h2>
 <p>
     {% if object.get_previous %}
-    <a href="{{ object.get_previous.get_absolute_url }}" title="View previous post">
-        &laquo;-- {{ object.get_previous }}
+    <a href="{{ object.get_previous.get_absolute_url }} " title = "View previous post">
+        &laquo; -- {{ object.get_previous }}
+<!--  주석      -->
+<!--        -->
     </a>
     {% endif %}
 
     {% if object.get_next %}
-    | <a href="{{ object.get_next.get_absolute_url }}" title="View next post">
-    {{ object.get_next }} --&raquo;
+    | <a href="{{ object.get_next_get_absolute_url }} " title = "View next post">
+    {{ object.get_next }} -- &raquo;
     </a>
     {% endif %}
 </p>
 
-<p>{{ object.modify_dt|date:"j F Y" }}</p>
+<p> {{ object.modify_dt|date:"j F Y" }}</p>
 <br>
 
 <div>
     {{ object.content|linebreaks }}
 </div>
 
-</body>
-</html>
+{% endblock %}
+
+{% block extra-script %}{% endblock %}

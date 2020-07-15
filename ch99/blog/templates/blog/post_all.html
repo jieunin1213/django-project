@@ -1,37 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% load static %}
 
-<h1>Blog List</h1>
-<br>
+{% block title %} post_all.html {% endblock %}
 
-{% for post in posts %}
-    <h3><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h3>
-    {{ post.modify_dt|date:"N d, Y" }}
-    <p>{{ post.description }}</p>
-{% endfor %}
+{% block header %}
+  <header class="masthead" style="background-image: url({% static 'img/about-bg.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Blog List</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
 
-<br>
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-lg-8 col-md-10 mx-auto">
+    {% for post in posts %}
+         <div class="post-preview">
+             <a href="{{ post.get_absolute_url }}">
+                 <h2 class="post-title">{{ post.title }}</h2></a>
+             <p class="post-meta">{{ post.modify_dt|date:"N d, Y" }} </p>
+             <h4 class="post-subtitle">{{ post.description }} </h4>
+             <hr>
+    {% endfor %}
+    <hr>
+    <!-- Pager -->
+  <span>
+          {% if page_obj.has_previous %}
+          <div class="clearfix">
+              <a class="btn btn-primary float-right" href="?page={{ page_obj.previous_page_number }}">이전페이지 &rarr;</a>
+          </div>
+          {% endif %}
 
-<div>
-    <span>
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
-        {% endif %}
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
 
-        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
-        {% endif %}
-    </span>
-
+          {% if page_obj.has_next %}
+          <div class="clearfix">
+              <a class="btn btn-primary float-right" href="?page= {{ page_obj.next_page_number }}">다음 페이지 &rarr;</a>
+          </div>
+          {% endif %}
+      </span>
+  </div>
 </div>
+</div>
+</div>
+{% endblock %}
 
-</body>
-</html>
+{% block extra-script %}{% endblock %}
