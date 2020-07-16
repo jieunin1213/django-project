@@ -1,115 +1,69 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="en">
-
+<html lang="ko">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <title>{% block title %}Django Web Programming{% endblock %}</title>
 
-  <title>{% block title %} base.html {% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
-
+    {% block extra-style %}{% endblock %}
 </head>
 
-<body>
+<body style="padding-top:90px;">
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'home'%}">Home</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'bookmark:index'%}">Bookmark</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">Blog</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{% url 'blog:index' %}">Post</a>
-              <a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a>
-              <a class="dropdown-item" href="{% url 'blog:post_year_archive' 2020 %}">Year Archive</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href={% url 'blog:index' %}>Photo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href={% url 'admin:index' %}>Admin</a>
-          </li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">Django - Python Web Programming</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'home' %}">Home</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'bookmark:index' %}">Bookmark</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'blog:index' %}">Blog</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'photo:index' %}">Photo</a></li>
+
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">Util</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a>
+                    <a class="dropdown-item" href="{% url 'blog:search' %}">Search</a>
+                </div>
+            </li>
         </ul>
-      </div>
+
+        <form class="form-inline my-2" action="" method="post"> {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="global search" name="search_word">
+        </form>
     </div>
-  </nav>
+</nav>
 
-  <!-- Page Header -->
-  {% block header %}
-  {% endblock %}
 
-  <!-- Main Content -->
-  {% block content %}
-  {% endblock %}
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="https://www.twitter.com">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://www.facebook.com">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://www.github.com">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
-        </div>
-      </div>
-    </div>
-  </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+{% block footer %}{% endblock %}
 
-  <!-- Custom scripts for this template -->
-  <script src="{% static 'js/clean-blog.min.js' %}"></script>
-  {% block extra-script %}{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/c998a172fe.js"></script>
+
+{% block extra-script %}{% endblock %}
+
 </body>
-
 </html>
+

@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mysite.views import HomeView
+from django.conf.urls.static import static   # static() 함수 : 정적파일을 처리하기 위해 그에 맞는 URL패턴을 반환하는 함수
+from django.conf import settings # settings 변수 : settings변수는 settings.py 모듈에서 정의한 항목들을 담고 있는 객체를 가리키는 reference이다.
 # from bookmark.views import BookmarkLV, BookmarkDV
 
 urlpatterns = [
@@ -23,8 +25,9 @@ urlpatterns = [
     path('', HomeView.as_view(), name = 'home'),
     path('bookmark/', include('bookmark.urls')),
     path('blog/', include('blog.urls')),
+    path('photo/', include('photo.urls')),
 
     # path('bookmark/', BookmarkLV.as_view(), name='index'),
     # path('bookmark/<int:pk>/', BookmarkDV.as_view(), name='detail'),
 
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
