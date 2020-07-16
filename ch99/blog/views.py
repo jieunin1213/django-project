@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic import ArchiveIndexView, YearArchiveView, MonthArchiveView
 from django.views.generic import DayArchiveView, TodayArchiveView
 from django.views.generic import FormView
+# (제네릭 뷰)란 무엇인가 : 블로그에 써놨다.
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import render

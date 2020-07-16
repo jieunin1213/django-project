@@ -20,6 +20,12 @@
 <div id = "content">
     <h1>Bookmark List</h1>
     <ul>
+
+      # {{bookmark}} 템플릿 변수 : Bookmark 테이블의 특정 ㄹ ㅔ코드 하나를 의미. 즉 특정 Bookmark 객체를 의미하며, 해당 객체를 프린트하면,
+        # 해당 객체의 __str__() 메소드를 호출해서 그 결과를 출력한다.
+        # 우리는 models.py 파일에서 __str__() 메소드를 정의할 때, 그 객체의 title을 반환하도록 정의했음.
+        # 그래서 {{bookmark}} 템플릿 변수를 프린트하면 해당 객체의 title이 출력되는 것임
+
         {% for bookmark in object_list %}
           <li><a href="{% url 'bookmark:detail' bookmark.id %}"> {{ bookmark }} </a></li>
         {% endfor %}
