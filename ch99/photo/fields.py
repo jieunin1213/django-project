@@ -21,8 +21,9 @@ class ThumbnailImageFieldFile(ImageFieldFile):
         return self._add_thumb(self.url)
 
     def save(self, name, content, save=True):
-        super().save(name, content, save)
+        super().save(name, content, save)# 큰 이미지를 저장하라
 
+        #이미지의 크기 및 특징 지정
         img = Image.open(self.path)
         size = (self.field.thumb_width, self.field.thumb_height)
         img.thumbnail(size)

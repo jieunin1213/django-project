@@ -21,7 +21,7 @@ from django.conf import settings # settings 변수 : settings변수는 settings.
 # from bookmark.views import BookmarkLV, BookmarkDV
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), # 장고의 Admin 사이트에 대한 URLcof는 이미 정의되어 있는데, 이를 사용하고 있다. Admin사이트를 사용하기 위해서는 항상 이렇게 정의한다.
     path('', HomeView.as_view(), name = 'home'),
     path('bookmark/', include('bookmark.urls')),
     path('blog/', include('blog.urls')),
