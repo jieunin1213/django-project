@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Django Bookmark List {% endblock %}
 {% block header %}
-  <header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
+  <!--<header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -14,22 +14,38 @@
         </div>
       </div>
     </div>
-  </header>
+  </header>-->
+
+
+
+
+
 {% endblock %}
 {% block content %}
+
+
+<img src="/static/img/post-bg.jpg" alt="경제" width = "800" height="400">
+
+<br>
+
+
 <div id = "content">
-    <h1>Bookmark List</h1>
+    <h1>Economics news</h1>
+    <h5>Bookmark List : 이번 주 주요 뉴스를 제공합니다.</h5>
     <ul>
 
-      # {{bookmark}} 템플릿 변수 : Bookmark 테이블의 특정 ㄹ ㅔ코드 하나를 의미. 즉 특정 Bookmark 객체를 의미하며, 해당 객체를 프린트하면,
+      <!--# {{bookmark}} 템플릿 변수 : Bookmark 테이블의 특정 ㄹ ㅔ코드 하나를 의미. 즉 특정 Bookmark 객체를 의미하며, 해당 객체를 프린트하면,
         # 해당 객체의 __str__() 메소드를 호출해서 그 결과를 출력한다.
         # 우리는 models.py 파일에서 __str__() 메소드를 정의할 때, 그 객체의 title을 반환하도록 정의했음.
-        # 그래서 {{bookmark}} 템플릿 변수를 프린트하면 해당 객체의 title이 출력되는 것임
+        # 그래서 {{bookmark}} 템플릿 변수를 프린트하면 해당 객체의 title이 출력되는 것임-->
 
         {% for bookmark in object_list %}
           <li><a href="{% url 'bookmark:detail' bookmark.id %}"> {{ bookmark }} </a></li>
         {% endfor %}
     </ul>
+
+
+
 </div>
 {% endblock %}
 {% block extra-script %}{% endblock %}

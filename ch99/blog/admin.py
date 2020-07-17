@@ -12,4 +12,4 @@ class PostAdmin(admin.ModelAdmin): #PostAdmin 클래스 : Post 클래스가 Admi
         return super().get_queryset(request).prefetch_related('tags')
 
     def tag_list(self, obj):
-        return ', '.join(o.name for o in obj.tags.all())
+        return ','.join(o.name for o in obj.tags.all())

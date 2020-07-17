@@ -2,28 +2,55 @@
 
 {% load static %}
 
-{% block title %} home.html {% endblock %}
+{% block title %}home.html{% endblock %}
 
-{% block header %}
-  <header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Clean Blog</h1>
-            <span class="subheading">A Blog Theme by Start Bootstrap</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+{% block extra-style %}
+<style type="text/css">
+.home-image {
+    background-image: url("{% static 'img/economics_real.jpg' %}");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 400px;
+    padding: 40px 0 0 40px;
+}
+.title {
+    color: lightblue;
+    font-weight: bold;
+}
+.powered {
+    position: relative;
+    top: 70%;
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+}
+</style>
 {% endblock %}
 
 {% block content %}
+    <div class="home-image">
+        <h2 class="title">WELCOME</h2>
+        <h4 class="powered"><i class="fas fa-arrow-circle-right"></i> Economics & Finance study Page</h4>
+    </div>
 
-안녕하세요
+    <hr style="margin: 30px 0;">
 
+    <div class="row text-center">
+        <div class="col-sm-6">
+            <h3><a href="{% url 'bookmark:index' %}">Economics 뉴스</a></h3>
+            <p> 최신 경제 뉴스를 제공합니다.</p>
+        </div>
+        <div class="col-sm-6">
+            <h3 ><a href="{% url 'blog:index' %}">Finance 이슈</a></h3>
+            <p>각 기업과 산업의 이슈를 다방면으로 제공합니다.</p>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block footer %}
+<footer class="fixed-bottom bg-info">
+    <div class="text-white font-italic text-right mr-5">지은's study page</div>
+</footer>
 {% endblock %}
 
-{% block extra-script %}{% endblock %}
